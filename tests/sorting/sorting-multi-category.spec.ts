@@ -1,9 +1,7 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "../../base/pomFixture";
 
-test("result-sorting-women-rimless", async ({ page }) => {
-  await page.goto("https://www.eyebuydirect.com/", {
-    waitUntil: "commit",
-  });
+test("result-sorting-women-rimless", async ({ page, homePage }) => {
+  await homePage.homePage();
   await page.getByLabel("Close").click();
   await page.getByRole("link", { name: "% Off ORDERS $75+" }).click();
   await page.getByLabel("Close").click();

@@ -1,9 +1,7 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../base/pomFixture";
 
-test("result-sorting-extra-small", async ({ page }) => {
-  await page.goto("https://www.eyebuydirect.com/", {
-    waitUntil: "commit",
-  });
+test("result-sorting-extra-small", async ({ page, homePage, baseURL }) => {
+  await homePage.homePage();
   await page.getByLabel("Close").click();
   await page.locator("//span[@aria-label='Eyeglasses']").hover();
   await page.getByTitle("Eyeglasses", { exact: true }).click();
@@ -15,9 +13,7 @@ test("result-sorting-extra-small", async ({ page }) => {
     .nth(1)
     .click();
 
-  await page.goto(
-    "https://www.eyebuydirect.com/eyeglasses#attrs=XS/pagesize=30/page=1/sort=relevance"
-  );
+  await page.goto(`${baseURL}#attrs=XS/pagesize=30/page=1/sort=relevance`);
 
   await page.getByLabel("Extra Small", { exact: true }).click();
   await expect(page.getByLabel("Extra Small(46)")).toBeChecked();

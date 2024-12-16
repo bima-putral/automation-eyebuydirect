@@ -1,9 +1,7 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../base/pomFixture";
 
-test("add-wishlist", async ({ page }) => {
-  await page.goto("https://www.eyebuydirect.com/", {
-    waitUntil: "commit",
-  });
+test("add-wishlist", async ({ page, homePage }) => {
+  await homePage.homePage();
   await page.getByLabel("Close").click();
   await page.locator("//span[@aria-label='Eyeglasses']").hover();
   await page.getByRole("link", { name: "Kids’ Eyeglasses" }).click();
@@ -30,10 +28,8 @@ test("add-wishlist", async ({ page }) => {
   });
 });
 
-test("remove-wishlist", async ({ page }) => {
-  await page.goto("https://www.eyebuydirect.com/", {
-    waitUntil: "commit",
-  });
+test("remove-wishlist", async ({ page, homePage }) => {
+  await homePage.homePage();
   await page.getByLabel("Close").click();
   await page.locator("//span[@aria-label='Eyeglasses']").hover();
   await page.getByTitle("Men’s Eyeglasses", { exact: true }).click();

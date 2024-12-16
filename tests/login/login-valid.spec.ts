@@ -1,9 +1,8 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../../base/pomFixture";
+import HomePage from "../../base/pages/homePage";
 
-test("login-valid", async ({ page }) => {
-  await page.goto("https://www.eyebuydirect.com/", {
-    waitUntil: "commit",
-  });
+test("login-valid", async ({ page, homePage }) => {
+  await homePage.homePage();
   await page.getByLabel("Close").click();
   await page.locator("//span[@aria-label='Sign In']").hover();
   await page.getByTestId("loginForm").getByLabel("Email").click();
